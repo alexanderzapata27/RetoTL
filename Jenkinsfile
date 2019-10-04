@@ -46,8 +46,8 @@ pipeline{
 
 			stage('Unit Test & Coverage') {
 				steps {
-				    sh './Reto-Back/infrastructure/build.gradle test'
-				    sh './Reto-Back/infrastructure/build.gradle jacocoTestReport'
+				    sh 'gradle --b ./Reto-Back/infrastructure/build.gradle test'
+				    sh 'gradle --b ./Reto-Back/infrastructure/build.gradle jacocoTestReport'
 				}
 			}          
 			
