@@ -52,7 +52,7 @@ pipeline{
 			}          
 			
 			stage('Static code revision SonarQube') {
-			    when { anyOf { branch 'develop'; branch 'master' }
+			    when { branch 'master' }
 			    }
 				steps{
 				    withSonarQubeEnv('Sonar') {
