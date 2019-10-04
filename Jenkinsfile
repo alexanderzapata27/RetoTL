@@ -25,7 +25,7 @@ pipeline{
 				steps{
 				   checkout([
 				   $class: 'GitSCM', 
-				   branches: [[name: '${BRANCH_NAME}']], 
+				   branches: [[name: '*/master']], 
 				   doGenerateSubmoduleConfigurations: false, 
 				   extensions: [], 
 				   gitTool: 'Git_Centos', 
@@ -39,8 +39,8 @@ pipeline{
 			 
 			stage('Build project') { 
 			   steps { 
-					sh './Reto-Back/infrastructure/build.gradle clean'
-					sh './Reto-Back/infrastructure/build.gradle build'
+					sh 'sh 'gradle --b ./Reto-Back/infrastructure/build.gradle clean'
+					sh 'sh 'gradle --b ./Reto-Back/infrastructure/build.gradle build'
 				}
 			}
 
