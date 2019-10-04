@@ -23,21 +23,31 @@ pipeline{
 
 			stage('Checkout Git'){
 				steps{
-				   checkout([$class: 'GitSCM', branches: [[name: '${BRANCH_NAME}']], doGenerateSubmoduleConfigurations: false, extensions: [], gitTool: 'Git_Centos', submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_alexanderzapata27', url: 'https://github.com/alexanderzapata27/RetoTL.git']]])
+				   checkout([
+				   $class: 'GitSCM', 
+				   branches: [[name: '${BRANCH_NAME}']], 
+				   doGenerateSubmoduleConfigurations: false, 
+				   extensions: [], 
+				   gitTool: 'Git_Centos', 
+				   submoduleCfg: [], 
+				   userRemoteConfigs: [[
+						credentialsId: 'GitHub_alexanderzapata27', 
+						url: 'https://github.com/alexanderzapata27/RetoTL.git'
+						]]])
 				}
 			}
 			 
 			stage('Build project') { 
 			   steps { 
-					sh 'gradle clean'
-					sh 'gradle build'
+					sh './Reto-Back/infrastructure/build.gradle clean'
+					sh './Reto-Back/infrastructure/build.gradle build'
 				}
 			}
 
 			stage('Unit Test & Coverage') {
 				steps {
-				    sh 'gradle test'
-				    sh 'gradle jacocoTestReport'
+				    sh './Reto-Back/infrastructure/build.gradle test'
+				    sh './Reto-Back/infrastructure/build.gradle jacocoTestReport'
 				}
 			}          
 			
