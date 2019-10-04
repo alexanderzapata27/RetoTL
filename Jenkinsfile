@@ -1,7 +1,7 @@
 pipeline{
  
 		agent {
-			label 'Slave5'
+			label 'Slave_Induccion'
 		}
 
 
@@ -16,7 +16,7 @@ pipeline{
 		
 		tools{
 			jdk 'JDK8_Centos'
-			gradle 'Gradle5.6_Centos'
+			gradle 'Gradle4.5_Centos'
 		}
 
 		stages {
