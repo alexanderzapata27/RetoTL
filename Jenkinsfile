@@ -39,8 +39,8 @@ pipeline{
 			 
 			stage('Build project') { 
 			   steps { 
-					sh 'sh 'gradle --b ./Reto-Back/infrastructure/build.gradle clean'
-					sh 'sh 'gradle --b ./Reto-Back/infrastructure/build.gradle build'
+					sh 'gradle --b ./Reto-Back/infrastructure/build.gradle clean'
+					sh 'gradle --b ./Reto-Back/infrastructure/build.gradle build'
 				}
 			}
 
