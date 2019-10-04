@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+}
+
+group = 'co.com.ceiba'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+	implementation project(':domain')
+	implementation 'org.springframework:spring-context:5.1.9.RELEASE'
+    
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-all:1.10.19'
+    testImplementation 'org.springframework:spring-test:5.1.9.RELEASE'
+}
+
+jacocoTestReport{
+    reports {
+        xml.enabled true
+        csv.enabled true
+        html.destination file("${buildDir}/test-results/jacocoHtml")
+    }
+
+}

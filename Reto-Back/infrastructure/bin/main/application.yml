@@ -1,0 +1,25 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/xml,text/plain
+  servlet:
+    context-path: /reto-team-lead
+    
+info:
+  aplication:
+    name: Reto Team Lead API
+    description: Apirest para la consulta y guardado de personas
+    version: 1.0.0
+    
+spring:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:h2:file:~/test
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
