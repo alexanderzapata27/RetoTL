@@ -52,7 +52,6 @@ pipeline{
 			}          
 			
 			stage('Static code revision SonarQube') {
-			    when { branch 'master' }
 				steps{
 				    withSonarQubeEnv('Sonar') {
 				      				      sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey='RetoTL'.${BRANCH_NAME} -Dsonar.projectName='RetoTL'.${BRANCH_NAME} -Dproject.settings=./sonar-project.properties"
