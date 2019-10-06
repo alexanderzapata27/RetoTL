@@ -51,14 +51,16 @@ pipeline{
 				}
 			}          
 			
-			stage('Static code revision SonarQube') {
+			stage('Static Code Analysis') {
 				steps{
-				    withSonarQubeEnv('Sonar') {
-				      				      sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dsonar.projectKey='RetoTL'.${BRANCH_NAME} -Dsonar.projectName='RetoTL'.${BRANCH_NAME} -Dproject.settings=./sonar-project.properties"
-					} 
-				    
+					echo '------------>Análisis de código estático<------------'
+					withSonarQubeEnv('Sonar') {
+						sh "${tool name: 'SonarScanner',
+						type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+					}
 				}
 			}
+
 		}
     
 		post { 
