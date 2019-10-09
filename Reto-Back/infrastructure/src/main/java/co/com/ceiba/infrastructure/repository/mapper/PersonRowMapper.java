@@ -11,8 +11,7 @@ public class PersonRowMapper implements RowMapper<Person>{
 
 	@Override
 	public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Person personDto = new Person(rs.getInt("identification"),rs.getString("name"),rs.getString("lastname"),rs.getTimestamp("age").toLocalDateTime().toLocalDate());
-		return personDto;
+		return new Person(rs.getInt("identification"),rs.getString("name"),rs.getString("lastname"),rs.getDate("dateOfBirth").toLocalDate());
 	}
 	
 }

@@ -8,9 +8,9 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.com.ceiba.domain.model.person.Person;
+import co.com.ceiba.domain.dto.person.PersonDTO;
 import co.com.ceiba.domain.port.person.PersonDAO;
-import co.com.ceiba.infrastructure.repository.mapper.PersonRowMapper;
+import co.com.ceiba.infrastructure.repository.mapper.PersonDTORowMapper;
 
 @Transactional
 @Repository
@@ -24,16 +24,16 @@ public class PersonDaoH2 implements PersonDAO{
 	}
 
 	@Override
-	public List<Person> getAll() {
-		String sql = "SELECT identification, name, lastname, age FROM TBL_PERSONS";
-		RowMapper<Person> rowMapper = new PersonRowMapper();
+	public List<PersonDTO> getAll() {
+		String sql = "SELECT identification, name, lastname, dateofbirth FROM TBL_PERSONS";
+		RowMapper<PersonDTO> rowMapper = new PersonDTORowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
 	@Override
-	public Person findByIdentification(int identification) {
-		String sql = "SELECT identification, name, lastname, age FROM TBL_PERSONS where identification = :identification";
-		RowMapper<Person> rowMapper = new PersonRowMapper();
+	public PersonDTO findByIdentification(int identification) {
+		String sql = "SELECT identification, name, lastname,   FROM TBL_PERSONS where identification = :identification";
+		RowMapper<PersonDTO> rowMapper = new PersonDTORowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper).stream().findFirst().get();
 	}
 

@@ -1,5 +1,5 @@
 rootProject.name = 'reto'
 
-include ':application',
-        ':infrastructure',
-        ':domain'
+include ':domain',
+		':application',
+        ':infrastructure'

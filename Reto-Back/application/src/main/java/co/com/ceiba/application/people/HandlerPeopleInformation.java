@@ -2,30 +2,24 @@ package co.com.ceiba.application.people;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import co.com.ceiba.domain.model.person.Person;
-import co.com.ceiba.domain.service.person.ObtainPersonInformationService;
-import co.com.ceiba.domain.service.person.ObtainPersonsInformationListService;
+import co.com.ceiba.domain.dto.person.PersonDTO;
+import co.com.ceiba.domain.port.person.PersonDAO;
 
 @Component
 public class HandlerPeopleInformation {
+	PersonDAO personDao;
 	
-	ObtainPersonInformationService obtainPersonInfoService;
-	ObtainPersonsInformationListService obtainPersonsListService;
-	
-	@Autowired
-	public HandlerPeopleInformation(ObtainPersonInformationService obtainPersonInfoService, ObtainPersonsInformationListService obtainPersonsListService) {
-		this.obtainPersonInfoService = obtainPersonInfoService;
-		this.obtainPersonsListService = obtainPersonsListService;
+	public HandlerPeopleInformation(PersonDAO personDao) {
+		this.personDao = personDao;
 	}
 	
-	public Person execute(int identification) {
-		return obtainPersonInfoService.execute(identification);
+	public PersonDTO execute(int identification) {
+		return personDao.findByIdentification(identification);
 	}
 	
-	public List<Person> execute() {
-		return obtainPersonsListService.execute();
+	public List<PersonDTO> execute() {
+		return personDao.getAll();
 	}
 }

@@ -5,5 +5,5 @@ CREATE TABLE TBL_PERSONS (
   identification int(15) NOT NULL,
   name VARCHAR(250) NOT NULL,
   lastname VARCHAR(250) DEFAULT NULL,
-  age int(5) NOT NULL
+  dateOfBirth DATE NOT NULL
 );

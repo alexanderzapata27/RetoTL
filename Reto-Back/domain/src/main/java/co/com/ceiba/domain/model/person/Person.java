@@ -17,6 +17,11 @@ public class Person {
 		this.dateOfBirth = dateOfBirth;
 	}
 	
+	public static Person createPerson(int identification, String name, String lastname, LocalDate dateOfBirth) {
+		 
+		return new Person(identification, name, lastname, dateOfBirth);
+	}
+	
 	public LocalDate getDateOfBirth() {
 		return this.dateOfBirth;
 	}
