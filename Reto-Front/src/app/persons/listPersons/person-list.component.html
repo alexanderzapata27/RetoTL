@@ -1,0 +1,35 @@
+<header-component></header-component>
+<div class="person-list-title">
+  <h1>
+    {{ title }}!
+  </h1>
+</div>
+<div *ngIf="showMessageBool" class="alert alert-warning user-saved" role="alert" visible="false">
+    {{deleteMessage}}
+  </div>
+<div class="table-responsive" style="text-align:center">
+    <table class="table table-hover" id="table-person-list">
+      <caption>Persons List Table</caption>
+      <thead>
+        <tr>
+          <th scope="col">Identificación</th>
+          <th scope="col">Nombre de la persona</th>
+          <th scope="col">Apellidos de la persona</th>
+          <th scope="col">Fecha de nacimiento</th>
+          <th scope="col">Edad</th>
+          <th scope="col">Acciones</th>
+          <th scope="col"><button type="button" id="add-person" class="btn btn-success" [routerLink]="['/persons','createPerson']">+</button></th>
+        </tr>
+      </thead>
+      <tbody id="body-person-list">
+        <tr *ngFor="let person of persons">
+          <th scope="row">CC. {{person.identification}}</th>
+          <td>{{person.name}}</td>
+          <td>{{person.lastname}}</td>
+          <td>{{person.dateOfBirth}}</td>
+          <td>{{person.age}}</td>
+          <td><button type="button" id="editButton" class="btn btn-secondary" [routerLink]="['/persons','editPerson',person.identification]">Editar</button><button type="button" id="deleteButton_{{person.identification}}" (click)="deletePerson(person.identification)" class="btn btn-danger">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

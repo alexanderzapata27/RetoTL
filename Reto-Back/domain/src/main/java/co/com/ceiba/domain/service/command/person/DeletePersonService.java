@@ -1,4 +1,4 @@
-package co.com.ceiba.domain.service.person;
+package co.com.ceiba.domain.service.command.person;
 
 import co.com.ceiba.domain.port.person.PersonRepository;
 
@@ -10,7 +10,7 @@ public class DeletePersonService {
 		this.personRepository = personRepository;
 	}
 
-	public void execute(int identification) throws Exception {
+	public void execute(int identification){
 		personRepository.delete(identification);
 	}
 }

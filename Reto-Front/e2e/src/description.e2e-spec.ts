@@ -8,9 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display description message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('Welcome to reto-frontend!');
+    page.clickInDescriptionMenu();
+    expect(page.getTitleDescriptionText()).toEqual('Descripción del reto');
   });
 
   afterEach(async () => {

@@ -1,0 +1,23 @@
+.editionForm {
+    width: 70%; 
+    margin: 0 auto;
+    margin-top: 4%
+}
+
+.person-list-title {
+    text-align:center;
+    margin-top: 3%;
+}
+
+.user-saved {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.btn-danger {
+    float: left;
+}
+
+.btn-primary {
+    float: right;
+}

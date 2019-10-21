@@ -1,10 +1,11 @@
-package co.com.ceiba.infrastructure.repository.person;
+package co.com.ceiba.infrastructure.repository.query.person;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,9 +33,11 @@ public class PersonDaoH2 implements PersonDAO{
 
 	@Override
 	public PersonDTO findByIdentification(int identification) {
-		String sql = "SELECT identification, name, lastname,   FROM TBL_PERSONS where identification = :identification";
+		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+		mapSqlParameterSource.addValue("identification", identification);
+		String sql = "SELECT identification, name, lastname, dateofbirth FROM TBL_PERSONS where identification = ?";
 		RowMapper<PersonDTO> rowMapper = new PersonDTORowMapper();
-		return this.jdbcTemplate.query(sql, rowMapper).stream().findFirst().get();
+		return this.jdbcTemplate.query(sql, rowMapper, identification).stream().findFirst().get();
 	}
 
 }

@@ -1,0 +1,24 @@
+.table-responsive{
+    text-align: center;
+    width: 70%; 
+    margin: 0 auto;
+    margin-top: 3%;
+}
+
+caption{
+    text-align: center;
+}
+
+.person-list-title {
+    text-align:center;
+    margin-top: 3%;
+}
+
+.btn-secondary{
+    width: 40%;
+    text-align: center; 
+}
+
+.btn-danger{
+    width: 60%;
+}

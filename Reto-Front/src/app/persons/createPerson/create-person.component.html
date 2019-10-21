@@ -1,0 +1,54 @@
+<div class="person-list-title">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+
+  <div *ngIf="showSuccess" id="successMessage" class="alert alert-success user-saved" role="alert" visible="false">
+      {{savedSuccessMessage}}
+    </div>
+    <div *ngIf="showFail" class="alert alert-danger user-saved" role="alert" visible="false">
+        {{errorPersonMessage}}
+      </div>
+
+<form #userinfo = "ngForm" class="editionForm" (ngSubmit)="savePerson(userinfo.value)">
+    <div class="form-group">
+      <label for="identification">Identificación</label>
+      <input type="text" class="form-control" id="identification" name="identification" aria-describedby="identificationHelp" placeholder="Ingresa tu cédula" [(ngModel)]="personToSave.identification" required>
+      <small id="identificationHelp" class="form-text text-muted">Solo se pueden ingresar cédulas</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" [(ngModel)]="personToSave.name" required> 
+    </div>
+    <div class="form-group">
+        <label for="lastname">Apellidos</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellidos" [(ngModel)]="personToSave.lastname" required>
+     </div>
+      <div class="form-group">
+          <label for="dateOfBirth">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="Fecha de nacimiento" [(ngModel)]="personToSave.dateOfBirth" required>
+        </div>
+  <button type="button" id="back-button" class="btn btn-danger" [routerLink]="['/persons','listPersons']">Regresar</button><button type="submit" id="save-button" class="btn btn-primary">Guardar</button>
+  
+  </form>
+<!-- 
+  <div class="modal fade" id="exampleModal" *ngIf="showModalUserRepeated" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Usuario existente</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>El usuario que intenta guardar ya existe. ¿Desea reemplazarlo?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Regresar</button>
+            <button type="button" class="btn btn-primary" (click)="callSavingService()">Aceptar</button>
+          </div>
+        </div>
+      </div>
+    </div> -->

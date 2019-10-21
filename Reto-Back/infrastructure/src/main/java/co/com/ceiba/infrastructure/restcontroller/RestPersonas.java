@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +17,7 @@ import com.google.gson.Gson;
 import co.com.ceiba.application.people.HandlerPeopleAdministration;
 import co.com.ceiba.application.people.HandlerPeopleInformation;
 import co.com.ceiba.domain.dto.person.PersonDTO;
-import co.com.ceiba.domain.model.person.Person;
+import co.com.ceiba.domain.exception.TLException;
 
 @RestController
 @RequestMapping("/persons")
@@ -42,14 +43,21 @@ public class RestPersonas {
 	}
 	
 	@PostMapping
-	public Person savePersonInformation(@RequestBody String personJson) throws Exception{
+	public PersonDTO savePersonInformation(@RequestBody String personJson) throws TLException{
 		Gson gson = new Gson();
 		PersonDTO person = gson.fromJson(personJson, PersonDTO.class);
 		return handlerPeopleAdministration.executeCreation(person);
 	}
 	
+	@PutMapping
+	public PersonDTO updatePersonInformation(@RequestBody String personJson) throws TLException{
+		Gson gson = new Gson();
+		PersonDTO person = gson.fromJson(personJson, PersonDTO.class);
+		return handlerPeopleAdministration.executeUpdate(person);
+	}
+	
 	@DeleteMapping(path = "/{identification}")
-	public void deletePerson(@PathVariable("identification") int identification) throws Exception {
+	public void deletePerson(@PathVariable("identification") int identification){
 		handlerPeopleAdministration.executeDelete(identification);
 	}
 }

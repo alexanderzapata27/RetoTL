@@ -1,0 +1,34 @@
+<div class="person-list-title">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+
+  <div *ngIf="showSuccess" class="alert alert-success user-saved" role="alert" visible="false">
+      {{savedSuccessMessage}}
+    </div>
+  <div *ngIf="showFail" class="alert alert-danger user-saved" role="alert" visible="false">
+      {{errorPersonMessage}}
+    </div>
+
+<form #userinfo = "ngForm" class="editionForm" (ngSubmit)="savePerson(userinfo.value)">
+    <div class="form-group">
+      <label for="identification">Identificación</label>
+      <input type="text" class="form-control" id="identification" name="identification" aria-describedby="identificationHelp" placeholder="Ingresa tu cédula" [(ngModel)]="personToSave.identification" required disabled>
+      <input type="hidden" class="form-control" id="operation" name="operation" [(ngModel)]="personToSave.operation">
+      <small id="identificationHelp" class="form-text text-muted">Solo se pueden ingresar cédulas</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Nombre</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Nombre" [(ngModel)]="personToSave.name" required> 
+    </div>
+    <div class="form-group">
+        <label for="lastname">Apellidos</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellidos" [(ngModel)]="personToSave.lastname" required>
+     </div>
+      <div class="form-group">
+          <label for="dateOfBirth">Fecha de nacimiento</label>
+          <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="Fecha de nacimiento" [(ngModel)]="personToSave.dateOfBirth" required>
+        </div>
+  <button type="button" class="btn btn-danger" [routerLink]="['/persons','listPersons']">Regresar</button><button type="submit" class="btn btn-primary">Actualizar</button>
+  </form>

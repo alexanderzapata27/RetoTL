@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {PersonComponent} from './listPersons/person.component';
+import { CreatePersonComponent } from './createPerson/create-person.component';
+import { EditPersonComponent } from './editPerson/edit-person.component';
+import { PersonComponent } from './listPersons/person-list.component';
 
 const routes: Routes = [
     {
-        path: 'listPersons',
-        component: PersonComponent
+      path: 'listPersons',
+      component: PersonComponent
+    },
+    {
+      path: 'createPerson',
+      component: CreatePersonComponent
+    },
+    {
+      path: 'editPerson/:identification',
+      component: EditPersonComponent
     }
 ];
 

@@ -1,0 +1,11 @@
+p {
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 3%
+}
+
+.person-list-title {
+    text-align:center;
+    margin-top: 3%;
+}

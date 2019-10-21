@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import co.com.ceiba.domain.port.person.PersonRepository;
-import co.com.ceiba.domain.service.person.DeletePersonService;
+import co.com.ceiba.domain.service.command.person.DeletePersonService;
 
 @Configuration
 public class BeanDeletePersonService {
