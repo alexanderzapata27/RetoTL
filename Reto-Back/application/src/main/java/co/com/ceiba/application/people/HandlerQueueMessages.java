@@ -1,11 +1,9 @@
 package co.com.ceiba.application.people;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import co.com.ceiba.domain.exception.TLException;
 import co.com.ceiba.domain.service.command.person.SendMessageService;
 import co.com.ceiba.domain.service.query.person.ReadMessageService;
 
@@ -20,19 +18,19 @@ public class HandlerQueueMessages {
 		this.readMessageService = readMessageService;
 	}
 	
-	public void executeSendOfPeopleMostOf18() throws IOException, TimeoutException {
+	public void executeSendOfPeopleMostOf18() throws TLException {
 		sendMessageService.executeSendOfPeopleMostOf18();
 	}
 	
-	public void executeSendOfPeopleLessOf18() throws IOException, TimeoutException {
+	public void executeSendOfPeopleLessOf18() throws TLException {
 		sendMessageService.executeSendOfPeopleLessOf18();
 	}
 	
-	public void executeReadOfPeopleMostOf18() throws IOException, TimeoutException {
+	public void executeReadOfPeopleMostOf18() throws TLException {
 		readMessageService.executeSendOfPeopleMostOf18();
 	}
 	
-	public void executeReadOfPeopleLessOf18() throws IOException, TimeoutException {
+	public void executeReadOfPeopleLessOf18() throws TLException {
 		readMessageService.executeSendOfPeopleLessOf18();
 	}
 }

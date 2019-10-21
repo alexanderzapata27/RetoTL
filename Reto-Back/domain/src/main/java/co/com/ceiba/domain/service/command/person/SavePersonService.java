@@ -1,6 +1,8 @@
 package co.com.ceiba.domain.service.command.person;
 
 import java.util.NoSuchElementException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import co.com.ceiba.domain.dto.person.ErrorDTO;
 import co.com.ceiba.domain.dto.person.PersonDTO;
@@ -9,7 +11,7 @@ import co.com.ceiba.domain.port.person.PersonDAO;
 import co.com.ceiba.domain.port.person.PersonRepository;
 
 public class SavePersonService {
-	
+	private final Logger LOGGER = Logger.getLogger("SavePersonService");
 	PersonRepository personRepository;
 	PersonDAO personDao;
 	
@@ -27,6 +29,7 @@ public class SavePersonService {
 			}
 		}catch(NoSuchElementException e) {
 			response = personRepository.save(person);
+			LOGGER.log(Level.INFO,"El usuario no estaba repetido y se crea",e);
 		}
 		return response;
 	}

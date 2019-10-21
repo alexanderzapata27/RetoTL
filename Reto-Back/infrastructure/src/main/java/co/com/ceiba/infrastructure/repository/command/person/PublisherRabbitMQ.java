@@ -15,12 +15,14 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
 import co.com.ceiba.domain.dto.person.PersonDTO;
+import co.com.ceiba.domain.exception.TLException;
 import co.com.ceiba.domain.port.person.PersonDAO;
 import co.com.ceiba.domain.port.person.Publisher;
 
 @Repository
 public class PublisherRabbitMQ implements Publisher{
-
+	private static final String QUEUE_NAME_MOSTOF18 = "PeopleMostOf18";
+	private static final String QUEUE_NAME_LESSOF18 = "PeopleLessOf18";
 	PersonDAO personDao;
 	Gson gson;
 	
@@ -30,11 +32,9 @@ public class PublisherRabbitMQ implements Publisher{
 		gson = new Gson();
 	}
 	
-	private final static String QUEUE_NAME_MOSTOF18 = "PeopleMostOf18";
-	private final static String QUEUE_NAME_LESSOF18 = "PeopleLessOf18";
 
 	@Override
-	public void sendPeopleMostOf18() throws IOException, TimeoutException {
+	public void sendPeopleMostOf18() throws TLException {
 		ConnectionFactory factory = new ConnectionFactory();
 		
 		factory.setHost("localhost");
@@ -46,14 +46,14 @@ public class PublisherRabbitMQ implements Publisher{
             channel.basicPublish("", QUEUE_NAME_MOSTOF18, null, message.getBytes("UTF-8"));
             System.out.println("Sent '" + message + "'");
         } catch (IOException e) {
-			throw new IOException("No se obtuvieron datos de entrada correctos");
+			throw new TLException("No se obtuvieron datos de entrada correctos");
 		} catch (TimeoutException e) {
-			throw new TimeoutException("La comunicaci�n con la cola de informacion no pudo ser establecida");
+			throw new TLException("La comunicaci�n con la cola de informacion no pudo ser establecida",e);
 		}
 	}
 
 	@Override
-	public void sendPeopleLessOf18() throws IOException, TimeoutException {
+	public void sendPeopleLessOf18() throws TLException {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost("localhost");
 		try (Connection connection = factory.newConnection();
@@ -64,9 +64,9 @@ public class PublisherRabbitMQ implements Publisher{
             channel.basicPublish("", QUEUE_NAME_LESSOF18, null, message.getBytes(StandardCharsets.UTF_8));
             System.out.println("Sent '" + message + "'");
 		} catch (IOException e) {
-			throw new IOException("No se obtuvieron datos de entrada correctos");
+			throw new TLException("No se obtuvieron datos de entrada correctos",e);
 		} catch (TimeoutException e) {
-			throw new TimeoutException("La comunicaci�n con la cola de informacion no pudo ser establecida");
+			throw new TLException("La comunicaci�n con la cola de informacion no pudo ser establecida",e);
 		}
 	}
 	

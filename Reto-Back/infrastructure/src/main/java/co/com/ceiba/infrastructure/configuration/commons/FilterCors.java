@@ -31,11 +31,11 @@ public class FilterCors implements Filter {
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("X-Frame-Options", "SAMEORIGIN");
 
-        if (!(request.getMethod().equalsIgnoreCase("OPTIONS"))) {
+        if (!("OPTIONS".equalsIgnoreCase(request.getMethod()))) {
             try {
                 chain.doFilter(req, res);
             } catch(Exception e) {
-                LOGGER.error("OcurriÃ³ un error en el filtro de Cors", e);
+                LOGGER.error("Ocurrió un error en el filtro de Cors", e);
             }
         } else {
             response.setHeader("Access-Control-Allow-Methods", "POST,GET,DELETE,PUT");

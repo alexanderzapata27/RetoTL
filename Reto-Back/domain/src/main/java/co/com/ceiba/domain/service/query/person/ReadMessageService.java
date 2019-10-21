@@ -1,8 +1,6 @@
 package co.com.ceiba.domain.service.query.person;
 
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
-
+import co.com.ceiba.domain.exception.TLException;
 import co.com.ceiba.domain.port.person.Receiver;
 
 public class ReadMessageService {
@@ -13,11 +11,11 @@ public class ReadMessageService {
 		this.receiver = receiver;
 	}
 
-	public void executeSendOfPeopleMostOf18() throws IOException, TimeoutException {
+	public void executeSendOfPeopleMostOf18() throws TLException {
 		receiver.readPeopleMostOf18();
 	}
 	
-	public void executeSendOfPeopleLessOf18() throws IOException, TimeoutException {
+	public void executeSendOfPeopleLessOf18() throws TLException {
 		receiver.readPeopleLessOf18();
 	}
 }
