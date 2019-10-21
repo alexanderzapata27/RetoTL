@@ -1,6 +1,7 @@
 package co.com.ceiba.infrastructure.repository.command.person;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 import java.util.stream.Collectors;
@@ -47,7 +48,7 @@ public class PublisherRabbitMQ implements Publisher{
         } catch (IOException e) {
 			throw new IOException("No se obtuvieron datos de entrada correctos");
 		} catch (TimeoutException e) {
-			throw new TimeoutException("La comunicación con la cola de información no pudo ser establecida");
+			throw new TimeoutException("La comunicaciï¿½n con la cola de informacion no pudo ser establecida");
 		}
 	}
 
@@ -60,12 +61,12 @@ public class PublisherRabbitMQ implements Publisher{
             channel.queueDeclare(QUEUE_NAME_LESSOF18, false, false, false, null);
             List<PersonDTO> lista = personDao.getAll().stream().filter(person -> person.getAge()<18).collect(Collectors.toList());
             String message = gson.toJson(lista);
-            channel.basicPublish("", QUEUE_NAME_LESSOF18, null, message.getBytes("UTF-8"));
+            channel.basicPublish("", QUEUE_NAME_LESSOF18, null, message.getBytes(StandardCharsets.UTF_8));
             System.out.println("Sent '" + message + "'");
 		} catch (IOException e) {
 			throw new IOException("No se obtuvieron datos de entrada correctos");
 		} catch (TimeoutException e) {
-			throw new TimeoutException("La comunicación con la cola de información no pudo ser establecida");
+			throw new TimeoutException("La comunicaciï¿½n con la cola de informacion no pudo ser establecida");
 		}
 	}
 	
