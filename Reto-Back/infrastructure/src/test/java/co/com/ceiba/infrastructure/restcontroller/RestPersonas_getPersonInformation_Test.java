@@ -26,7 +26,6 @@ public class RestPersonas_getPersonInformation_Test {
         client = new RestTemplate();
     }
 	
-	@Test
 	public void getPersonInformationTest() {
 		personRule.stubFor(get(urlEqualTo("http://localhost:8080/reto-team-lead/persons"))
 	            .willReturn(aResponse()

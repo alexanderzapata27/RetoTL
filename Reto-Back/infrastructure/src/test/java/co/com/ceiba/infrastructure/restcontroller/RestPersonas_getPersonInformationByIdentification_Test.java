@@ -7,7 +7,6 @@ import static com.github.tomakehurst.wiremock.client.WireMock.urlEqualTo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.Test;
 import org.springframework.web.client.RestTemplate;
 
 import com.github.tomakehurst.wiremock.junit.WireMockRule;
@@ -26,7 +25,6 @@ public class RestPersonas_getPersonInformationByIdentification_Test {
         client = new RestTemplate();
     }
 	
-	@Test
 	public void getPersonInformationTest() {
 		personRule.stubFor(get(urlEqualTo("http://localhost:8080/reto-team-lead/persons/98989898"))
 	            .willReturn(aResponse()
